@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Project</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+        <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </head>
+        
+        <body>
+
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    My Project
+                </h1>
+                <input id="musicGenre">
+                <input id="city">
+                <button>Search</button>
+            </div>
+            <br>
+
+            <div id="content">
+                
+            </div>
+
+
+
+
+<!--
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <input id="musicGenre">
+                        <input id="city">
+                    
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        <ul></ul>
+                        <button>Search</button>
+
+                    </div>
+                </div>
+            </div>
+-->
+
+            <script type="text/javascript">
+
+        // key authentication begin
+
+            var auth = {
+                // Yelp keys and tokens
+                consumerKey : "VP4buuF7sj7C57kDOH6sDA",
+                consumerSecret : "5U95kCGUarDzJuXWu9jv_R2CUwY",
+                accessToken : "eEiiUV5QjwGiCViFaC3u1cJHYgdvuK0d",
+                accessTokenSecret : "xw9On4x8N8hePN_GhGJ7_ky98qw",
+                serviceProvider : {
+                    signatureMethod : "HMAC-SHA1"
+                }
+            };
+
+
+            var accessor = {
+                consumerSecret : auth.consumerSecret,
+                tokenSecret : auth.accessTokenSecret
+            };
+            parameters = [];
+            parameters.push(['callback', 'cb']);
+            parameters.push(['oauth_consumer_key', auth.consumerKey]);
+            parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+            parameters.push(['oauth_token', auth.accessToken]);
+            parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+            // key authentication end
+
+            $("button").on("click", function(e) {
+                e.preventDefault()
+
+                var $myMusicInput = $("#musicGenre");
+                var $myLocationInput = $("#city");
+                var terms = $myMusicInput.val();
+                var near = $myLocationInput.val();
+
+                console.log(terms);
+                console.log(near);
+
+                parameters.push(['term', terms]);
+                parameters.push(['location', near]);
+
+                var message = {
+                    'action' : 'http://api.yelp.com/v2/search',
+                    'method' : 'GET',
+                    'parameters' : parameters
+
+                };
+
+                OAuth.setTimestampAndNonce(message);
+                OAuth.SignatureMethod.sign(message, accessor);
+
+                var parameterMap = OAuth.getParameterMap(message.parameters);
+                //console.log(parameterMap);
+
+                $.ajax({
+                    'url' : message.action,
+                    'data' : parameterMap,
+                    'dataType' : 'jsonp',
+                    'jsonpCallback' : 'cb',
+                    'cache': true,
+                    success : function( data, textStats, XMLHttpRequest ) {
+                        console.log( data )
+                        var sOptions;
+                        aBusinesses = data.businesses
+
+                        $.each( aBusinesses, function( index, value ) {
+                        aBusinesses = value;
+            /*
+                        sOptions += "<li value='" + aBusinesses.id + "'>" + aBusinesses.name + "--" + aBusinesses.location.address[0] + "<br>" + aBusinesses.snippet_text + "<br>" + aBusinesses.phone + "<br>" + "<img src="+aBusinesses.image_url+"> <img src="+aBusinesses.rating_img_url + "> </li> <br>"
+
+            */
+
+                        sOptions += "<div class='col-md-6'><div class='panel panel-default'><div class='panel-heading'><h4>" + aBusinesses.name + "</h4></div><div class='panel-body'><p>"+ "<img src="+aBusinesses.image_url+">" + aBusinesses.location.address[0] + "<br>" + aBusinesses.snippet_text + "<br>" + aBusinesses.phone + "<br>" + "<img src="+aBusinesses.rating_img_url + "></p><a href='#' class='btn btn-default'>Learn More</a></div></div></div>"
+
+                    });
+
+                        $("#content").html(sOptions);
+                    }
+                });
+            });         
+
+        </script>
+        </body>
+</html>
