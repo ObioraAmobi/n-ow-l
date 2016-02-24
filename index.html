@@ -4,10 +4,28 @@
         <meta charset="UTF-8">
         <title>My Project</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
+
+        <!-- Script -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <style type="text/css">
+            body{
+                font-family: 'Ubuntu', serif;
+                background: url("skulls.png") repeat 0 0;
+            }
+
+            .panel{
+                text-align: center;
+            }
+            .text-snippet{
+                text-align: left;
+            }
+        </style>
     </head>
         
         <body>
@@ -19,36 +37,13 @@
                 <input id="musicGenre">
                 <input id="city">
                 <button>Search</button>
+                <button id="newSearch" onClick="window.location.reload()">New Search</button>
             </div>
             <br>
 
             <div id="content">
                 
             </div>
-
-
-
-
-<!--
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="col-md-12">
-
-                        <input id="musicGenre">
-                        <input id="city">
-                    
-                    </div>
-
-                    <div class="col-md-6">
-                        
-                        <ul></ul>
-                        <button>Search</button>
-
-                    </div>
-                </div>
-            </div>
--->
 
             <script type="text/javascript">
 
@@ -79,6 +74,8 @@
 
             // key authentication end
 
+            $('#newSearch').hide();
+
             $("button").on("click", function(e) {
                 e.preventDefault()
 
@@ -104,7 +101,7 @@
                 OAuth.SignatureMethod.sign(message, accessor);
 
                 var parameterMap = OAuth.getParameterMap(message.parameters);
-                //console.log(parameterMap);
+                console.log(parameterMap);
 
                 $.ajax({
                     'url' : message.action,
@@ -114,24 +111,30 @@
                     'cache': true,
                     success : function( data, textStats, XMLHttpRequest ) {
                         console.log( data )
-                        var sOptions;
+                        var sOptions = "";
                         aBusinesses = data.businesses
 
                         $.each( aBusinesses, function( index, value ) {
-                        aBusinesses = value;
-            /*
-                        sOptions += "<li value='" + aBusinesses.id + "'>" + aBusinesses.name + "--" + aBusinesses.location.address[0] + "<br>" + aBusinesses.snippet_text + "<br>" + aBusinesses.phone + "<br>" + "<img src="+aBusinesses.image_url+"> <img src="+aBusinesses.rating_img_url + "> </li> <br>"
+                            aBusinesses = value;
 
-            */
+                            sOptions += "<div class='col-md-6'><div class='panel panel-success'><div class='panel-heading'><h4>" + aBusinesses.name + "</h4></div><div class='panel-body'><p>"+ "<div class='thumbnail'><img src="+aBusinesses.image_url+" class='img-rounded' style='width:150px;'></div>" + aBusinesses.location.address[0] + "<br><br> <p class='text-snippet'>" + aBusinesses.snippet_text + "</p> <br> <span class='glyphicon glyphicon-phone-alt' aria-hidden='true'></span>" + aBusinesses.display_phone + "<br><br>" + "<img src="+aBusinesses.rating_img_url_large + "></p><a href='" + aBusinesses.url + "' class='btn btn-default'>Find Out More..</a></div></div></div>"
 
-                        sOptions += "<div class='col-md-6'><div class='panel panel-default'><div class='panel-heading'><h4>" + aBusinesses.name + "</h4></div><div class='panel-body'><p>"+ "<img src="+aBusinesses.image_url+">" + aBusinesses.location.address[0] + "<br>" + aBusinesses.snippet_text + "<br>" + aBusinesses.phone + "<br>" + "<img src="+aBusinesses.rating_img_url + "></p><a href='#' class='btn btn-default'>Learn More</a></div></div></div>"
-
-                    });
+                        });
 
                         $("#content").html(sOptions);
+
+                        $('button').hide("");
+                        $('#newSearch').show("slow");
                     }
                 });
-            });         
+            });
+
+            $("#newSearch").on("click", function(e) {
+                e.preventDefault()
+
+                $('button').show("");
+
+            });
 
         </script>
         </body>
