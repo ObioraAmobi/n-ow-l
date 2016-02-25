@@ -5,11 +5,14 @@
 
     <meta charset="utf-8">
 
+    <link rel=icon href="nightowl_logo_small.png" sizes="16x16" type="image/png">
+
     <title>NightOwl</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
 
             <!-- Script -->
 
@@ -46,22 +49,25 @@
 
     <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
+    
 
-    <div id="searchForm" class="form-group">    
-        <div id="searchFormContainer" class="container">
-            <div class="row">
-            <div class="col-md-5">
-                <input id="musicGenre" type="text" class="form-control input-lg" placeholder="Music genre...">  
-            </div>
-            <div class="col-md-5">
-                <input id="city" type="text" class="form-control input-lg" placeholder="City...">   
-            </div>
-            <div class="col-md-2">
-                <a class="btn btn-lg btn-success" href="#searchResults" role="button">GO</a>
-            </div>
+        <div id="searchForm" class="form-group">    
+            <div id="searchFormContainer" class="container">
+                <div class="row">
+                <div class="col-md-5">
+                    <input id="musicGenre" type="text" class="form-control input-lg" placeholder="Music genre...">  
+                </div>
+                <div class="col-md-5">
+                    <input id="city" type="text" class="form-control input-lg" placeholder="City...">   
+                </div>
+                <div class="col-md-2">
+                    <a id="searchButton" class="btn btn-lg btn-success" href="#searchResults" role="button">GO</a>
+                    <a id="newSearch" href="#myCarousel" onClick="window.location.reload()" class="btn btn-lg btn-success" role="button">GO Again</a>
+                </div>
+                </div>
             </div>
         </div>
-    </div>
+    
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
@@ -114,15 +120,16 @@
     </header>
 
     <!-- Communication with AJAX -->
-
-    <div id="map_canvas"></div>
-
-    <div id="searchResults" class="container-fluid" style="background-image:url('ignasi_pattern_s.png');">
-        <div id="content">
-                
+        <div id="mapContainer">
+            <div id="map_canvas" class='col-md-12'></div>
         </div>
-    </div>
-    
+        <div id="searchResults" class="container-fluid col-md-6" style="background-image:url('ignasi_pattern_s.png');">
+
+            <div id="content">
+                    
+            </div>
+        </div>
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -131,6 +138,8 @@
     $('.carousel').carousel({
         interval: 5000 //changes the speed
     })
+
+
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js"></script>

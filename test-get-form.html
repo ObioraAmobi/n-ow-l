@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test get form</title>
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+	<form action="#" method="GET">
+      <input name="a" /> 
+      <input name="b" /> 
+      <input name="c" /> 
+      <input type="submit" /> 
+    </form>
+
+
+	<script>
+
+		function getQueryVariable(variable) {
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i=0;i<vars.length;i++) {
+			   var pair = vars[i].split("=");
+			   if(pair[0] == variable){return pair[1];}
+			}
+			return(false);
+		}
+
+		var valueInput1 = getQueryVariable("a");
+		var valueInput2 = getQueryVariable("b");
+		var valueInput3 = getQueryVariable("c");
+
+		var $inputs = $("input");
+
+		if (valueInput1 != "") {
+			$inputs[0].value = valueInput1;
+		}
+
+
+	</script>
+</body>
+</html>
