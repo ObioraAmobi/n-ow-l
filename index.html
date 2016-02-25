@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>My Project</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu">
 
-        <!-- Script -->
+<head>
+
+    <meta charset="utf-8">
+
+    <title>NightOwl</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link href="css/full-slider.css" rel="stylesheet">
+
+            <!-- Script -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
         <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        <style type="text/css">
-            body{
-                font-family: 'Ubuntu', serif;
-                background: url("skulls.png") repeat 0 0;
-            }
+</head>
 
-            .panel{
-                text-align: center;
-            }
-            .text-snippet{
-                text-align: left;
-            }
-        </style>
-    </head>
-        
-        <body>
+<body>
 
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    My Project
-                </h1>
-                <input id="musicGenre">
-                <input id="city">
-                <button>Search</button>
-                <button id="newSearch" onClick="window.location.reload()">New Search</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span><img src="nightowl_logo.png" width="10%"><a class="navbar-brand" href="#">NightOwl</a></span>
             </div>
-            <br>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-            <div id="content">
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+
+    <div id="searchForm" class="form-group">    
+        <div id="searchFormContainer" class="container">
+            <div class="row">
+            <div class="col-md-5">
+                <input id="musicGenre" type="text" class="form-control input-lg" placeholder="Music genre...">  
+            </div>
+            <div class="col-md-5">
+                <input id="city" type="text" class="form-control input-lg" placeholder="City...">   
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-lg btn-success" href="#searchResults" role="button">GO</a>
+            </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+
+                <!-- http://images.fineartamerica.com/images-medium-large/michael-jackson-force-david-lloyd-glover.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+            <div class="item">
+
+                <!-- http://images.fineartamerica.com/images-medium-large-5/tina-turner-dan-haraga.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+            <div class="item">
+
+                <!-- http://www.creativeboom.com/uploads/articles/0a/0a8513f5bff76a099e092678f8b254044a404cd9_1200.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+            <div class="item">
+
+                <!-- http://img15.deviantart.net/62f5/i/2009/104/d/8/biggie_hip_hop_painting_by_kyle_lambert.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+            <div class="item">
+
+                <!-- http://www.creativeboom.com/uploads/articles/0a/0a8513f5bff76a099e092678f8b254044a404cd9_1200.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+            <div class="item">
+
+                <!-- http://images.fineartamerica.com/images-medium-large-5/bob-marley-02-yuriy-shevchuk.jpg -->
+
+                <div class="fill" style="background-image:url('');"></div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+
+    <!-- Communication with AJAX -->
+
+    <div id="map_canvas"></div>
+
+    <div id="searchResults" class="container-fluid" style="background-image:url('ignasi_pattern_s.png');">
+        <div id="content">
                 
-            </div>
+        </div>
+    </div>
+    
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-            <script type="text/javascript">
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
 
-        // key authentication begin
+    <script async defer src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/script.js"></script>
 
-            var auth = {
-                // Yelp keys and tokens
-                consumerKey : "VP4buuF7sj7C57kDOH6sDA",
-                consumerSecret : "5U95kCGUarDzJuXWu9jv_R2CUwY",
-                accessToken : "eEiiUV5QjwGiCViFaC3u1cJHYgdvuK0d",
-                accessTokenSecret : "xw9On4x8N8hePN_GhGJ7_ky98qw",
-                serviceProvider : {
-                    signatureMethod : "HMAC-SHA1"
-                }
-            };
+</body>
 
-
-            var accessor = {
-                consumerSecret : auth.consumerSecret,
-                tokenSecret : auth.accessTokenSecret
-            };
-            parameters = [];
-            parameters.push(['callback', 'cb']);
-            parameters.push(['oauth_consumer_key', auth.consumerKey]);
-            parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
-            parameters.push(['oauth_token', auth.accessToken]);
-            parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
-
-            // key authentication end
-
-            $('#newSearch').hide();
-
-            $("button").on("click", function(e) {
-                e.preventDefault()
-
-                var $myMusicInput = $("#musicGenre");
-                var $myLocationInput = $("#city");
-                var terms = $myMusicInput.val();
-                var near = $myLocationInput.val();
-
-                console.log(terms);
-                console.log(near);
-
-                parameters.push(['term', terms]);
-                parameters.push(['location', near]);
-
-                var message = {
-                    'action' : 'http://api.yelp.com/v2/search',
-                    'method' : 'GET',
-                    'parameters' : parameters
-
-                };
-
-                OAuth.setTimestampAndNonce(message);
-                OAuth.SignatureMethod.sign(message, accessor);
-
-                var parameterMap = OAuth.getParameterMap(message.parameters);
-                console.log(parameterMap);
-
-                $.ajax({
-                    'url' : message.action,
-                    'data' : parameterMap,
-                    'dataType' : 'jsonp',
-                    'jsonpCallback' : 'cb',
-                    'cache': true,
-                    success : function( data, textStats, XMLHttpRequest ) {
-                        console.log( data )
-                        var sOptions = "";
-                        aBusinesses = data.businesses
-
-                        $.each( aBusinesses, function( index, value ) {
-                            aBusinesses = value;
-
-                            sOptions += "<div class='col-md-6'><div class='panel panel-success'><div class='panel-heading'><h4>" + aBusinesses.name + "</h4></div><div class='panel-body'><p>"+ "<div class='thumbnail'><img src="+aBusinesses.image_url+" class='img-rounded' style='width:150px;'></div>" + aBusinesses.location.address[0] + "<br><br> <p class='text-snippet'>" + aBusinesses.snippet_text + "</p> <br> <span class='glyphicon glyphicon-phone-alt' aria-hidden='true'></span>" + aBusinesses.display_phone + "<br><br>" + "<img src="+aBusinesses.rating_img_url_large + "></p><a href='" + aBusinesses.url + "' class='btn btn-default'>Find Out More..</a></div></div></div>"
-
-                        });
-
-                        $("#content").html(sOptions);
-
-                        $('button').hide("");
-                        $('#newSearch').show("slow");
-                    }
-                });
-            });
-
-            $("#newSearch").on("click", function(e) {
-                e.preventDefault()
-
-                $('button').show("");
-
-            });
-
-        </script>
-        </body>
 </html>

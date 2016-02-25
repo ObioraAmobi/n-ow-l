@@ -35,17 +35,8 @@ footer {
     margin: 50px 0;
 }
 
-div.form-group {
-    position:absolute;
-    z-index:9999999;
-    top: 80%;
-    left: 10%;
-    right:auto;
-    bottom:auto;
-}
-
 .form-control{
-    border: 3px solid grey;
+    border: 3px solid black;
 }
 
 .panel {
@@ -55,4 +46,54 @@ div.form-group {
 
 .text-snippet{
     text-align: left;
-}       
+}  
+
+.form-group {
+    position:absolute;
+    z-index:2;
+    top: 60%;
+    left: 10%;
+    right:auto;
+    bottom:auto;
+    width: 80%;
+}
+
+.form-group-fixed {
+    top: 0;
+    z-index: 1000000000;
+    position: fixed;
+    width: 100%;
+    margin-left: 80px;
+}
+
+#map {
+    height: 50%;
+}
+
+#map_canvas {
+    width: 70%;
+    height: 70%;
+    float: right;
+}
+
+.panel-body{
+    background-color: whitesmoke;
+}
+
+#musicGenre, #city{
+    z-index:20;
+}
+
+a.navbar-brand{
+    float: none;
+    padding-right: 24px;
+    margin-left: -75px;
+}
+
+span img{
+    margin-left: -15%;
+}
+
+#searchResults{
+    float: left;
+}
